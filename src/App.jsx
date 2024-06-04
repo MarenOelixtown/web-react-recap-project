@@ -7,7 +7,12 @@ import { uid } from "uid";
 
 function App() {
   const [colors, setColors] = useState(initialColors);
-
+  const deleteAColor = (colorToBeDeleted) => {
+    const updatedColors = colors.filter(
+      (color) => color.id !== colorToBeDeleted.id
+    );
+    setColors(updatedColors);
+  };
   function handleAddColor(newColor) {
     setColors([{ id: uid(), ...newColor }, ...colors]);
   }
@@ -18,7 +23,7 @@ function App() {
       <ColorForm onAddColor={handleAddColor} />
 
       {colors.map((color) => {
-        return <Color key={color.id} color={color} />;
+        return <Color key={color.id} color={color} onDelete={deleteAColor} />;
       })}
     </>
   );
