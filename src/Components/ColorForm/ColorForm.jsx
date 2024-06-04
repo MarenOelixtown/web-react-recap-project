@@ -25,30 +25,37 @@ export default function ColorForm({ onAddColor }) {
       <label htmlFor="role">Role</label>
       <input type="text" name="role" id="role" placeholder="Color Name" />
       <label htmlFor="hex-text">Hex</label>
-      <input type="text" name="hex-text" id="hex-text" value={colorHex} />
-      <label htmlFor="hex"></label>
-      <input
-        type="color"
-        name="hex"
-        id="hex"
-        value={colorHex}
-        onChange={handleColorChangeOne}
-      />
+      <div className="row">
+        <input type="text" name="hex-text" id="hex-text" value={colorHex} />
+        <label htmlFor="hex"></label>
+        <input
+          type="color"
+          name="hex"
+          id="hex"
+          value={colorHex}
+          onChange={handleColorChangeOne}
+        />
+      </div>
+
       <label htmlFor="contrastText">Contrast Text</label>
-      <input
-        type="text"
-        name="contrastText"
-        id="contrastText"
-        value={colorContrastHex}
-      />
-      <label htmlFor="hex-contrast"></label>
-      <input
-        type="color"
-        name="hex-contrast"
-        id="hex-contrast"
-        value={colorContrastHex}
-        onChange={handleColorChangeTwo}
-      />
+      <div className="row">
+        <input
+          type="text"
+          name="contrastText"
+          id="contrastText"
+          value={colorContrastHex}
+        />
+
+        <label htmlFor="hex-contrast"></label>
+        <input
+          type="color"
+          name="hex-contrast"
+          id="hex-contrast"
+          value={colorContrastHex}
+          onChange={handleColorChangeTwo}
+        />
+      </div>
+
       <button type="submit">Add Color</button>
     </form>
   );
