@@ -22,9 +22,13 @@ function App() {
       <h1>Theme Creator</h1>
       <ColorForm onAddColor={handleAddColor} />
 
-      {colors.map((color) => {
-        return <Color key={color.id} color={color} onDelete={deleteAColor} />;
-      })}
+      {colors.length === 0 ? (
+        <p>No colors ... start by adding one!</p>
+      ) : (
+        colors.map((color) => (
+          <Color key={color.id} color={color} onDelete={deleteAColor} />
+        ))
+      )}
     </>
   );
 }
