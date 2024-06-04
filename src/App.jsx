@@ -7,7 +7,7 @@ import { uid } from "uid";
 
 function App() {
   const [colors, setColors] = useState(initialColors);
-  console.log(colors);
+
   function handleAddColor(newColor) {
     setColors([{ id: uid(), ...newColor }, ...colors]);
   }

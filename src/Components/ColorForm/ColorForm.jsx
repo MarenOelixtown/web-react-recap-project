@@ -1,5 +1,6 @@
 import "./ColorForm.css";
 import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function ColorForm({ onAddColor }) {
   const [colorHex, setColorHex] = useState("#e5430f");
@@ -15,7 +16,6 @@ export default function ColorForm({ onAddColor }) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    console.log(data);
     onAddColor(data);
     event.target.reset();
   }
