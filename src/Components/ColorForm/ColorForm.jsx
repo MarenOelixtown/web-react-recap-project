@@ -23,7 +23,7 @@ export default function ColorForm({ onAddColor }) {
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <label htmlFor="role">Role</label>
-      <input type="text" name="role" id="role" />
+      <input type="text" name="role" id="role" placeholder="Color Name" />
       <label htmlFor="hex-text">Hex</label>
       <input type="text" name="hex-text" id="hex-text" value={colorHex} />
       <label htmlFor="hex"></label>
