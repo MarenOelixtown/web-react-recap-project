@@ -1,7 +1,7 @@
 import "./ColorForm.css";
 import { useState } from "react";
 
-export default function ColorForm() {
+export default function ColorForm({ onAddColor }) {
   const [colorHex, setColorHex] = useState("#e5430f");
   const [colorContrastHex, setColorContrastHex] = useState("#FFFFFF");
 
@@ -11,9 +11,17 @@ export default function ColorForm() {
   const handleColorChangeTwo = (event) => {
     setColorContrastHex(event.target.value);
   };
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    console.log(data);
+    onAddColor(data);
+    event.target.reset();
+  }
 
   return (
-    <form className="form-container">
+    <form className="form-container" onSubmit={handleSubmit}>
       <label htmlFor="role">Role</label>
       <input type="text" name="role" id="role" />
       <label htmlFor="hex-text">Hex</label>
