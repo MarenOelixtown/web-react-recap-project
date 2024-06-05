@@ -13,12 +13,11 @@ export default function ColorForm({
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    console.log(data);
+
     if (color) {
       const editColor = { ...data, id: color.id };
 
       if (toEditColorState) {
-        console.log("Editing color");
         onEditColor(editColor);
         setShowEditForm(false);
       }
