@@ -1,9 +1,11 @@
 import "./Color.css";
 import Button from "./Button.jsx";
 import { useState } from "react";
+import ColorForm from "../ColorForm/ColorForm.jsx";
 
 export default function Color({ color, onDelete }) {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
 
   return (
     <div
@@ -31,7 +33,17 @@ export default function Color({ color, onDelete }) {
             text="Delete"
             onButtonClick={() => setShowDeleteConfirmation(true)}
           />
-          <Button text="Edit" />
+          {showEditForm ? (
+            <>
+              <ColorForm />{" "}
+              <Button
+                text="Cancel"
+                onButtonClick={() => setShowEditForm(false)}
+              />
+            </>
+          ) : (
+            <Button text="Edit" onButtonClick={() => setShowEditForm(true)} />
+          )}
         </>
       )}
     </div>
