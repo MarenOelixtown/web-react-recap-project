@@ -3,7 +3,7 @@ import Button from "./Button.jsx";
 import { useState } from "react";
 import ColorForm from "../ColorForm/ColorForm.jsx";
 
-export default function Color({ color, onDelete }) {
+export default function Color({ color, onDelete, onEdit }) {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
 
@@ -35,7 +35,12 @@ export default function Color({ color, onDelete }) {
           />
           {showEditForm ? (
             <>
-              <ColorForm />{" "}
+              <ColorForm
+                color={color}
+                toEditColorState={showEditForm}
+                onEditColor={onEdit}
+                setShowEditForm={setShowEditForm}
+              />{" "}
               <Button
                 text="Cancel"
                 onButtonClick={() => setShowEditForm(false)}

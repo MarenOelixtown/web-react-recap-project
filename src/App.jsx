@@ -11,6 +11,14 @@ function App() {
   const handleDelete = (id) => {
     setColors(colors.filter((color) => color.id !== id));
   };
+  const handleEditColor = (editColor) => {
+    setColors(
+      colors.map((color) => {
+        if (color.id === editColor.id) return { ...editColor };
+        return color;
+      })
+    );
+  };
 
   function handleAddColor(newColor) {
     setColors([{ id: uid(), ...newColor }, ...colors]);
@@ -25,7 +33,12 @@ function App() {
         <p>No colors ... start by adding one!</p>
       ) : (
         colors.map((color) => (
-          <Color key={color.id} color={color} onDelete={handleDelete} />
+          <Color
+            key={color.id}
+            color={color}
+            onDelete={handleDelete}
+            onEdit={handleEditColor}
+          />
         ))
       )}
     </>
