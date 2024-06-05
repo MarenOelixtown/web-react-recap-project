@@ -16,7 +16,19 @@ export default function ColorForm({ onAddColor }) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    onAddColor(data);
+
+    if (color) {
+      const editColor = { ...data, id: color.id };
+
+      if (toEditColorState) {
+        console.log("Editing color");
+        onEditColor(editColor);
+        setShowEditForm(false);
+      }
+    } else {
+      onAddColor(data);
+    }
+
     event.target.reset();
   }
 
