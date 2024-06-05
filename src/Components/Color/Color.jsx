@@ -29,6 +29,7 @@ export default function Color({ color, onDelete }) {
           <Button text="Delete" onClick={handleOnDelete} />
         </>
       )}
+      <Button text="Edit" />
     </div>
   );
 }
