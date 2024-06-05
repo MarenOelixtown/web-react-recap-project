@@ -13,15 +13,15 @@ export default function ColorForm({
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    const editColor = { ...data, id: color.id };
-    console.log(editColor);
-    console.log("Form data:", data);
-    console.log(toEditColorState);
 
-    if (toEditColorState) {
-      console.log("Editing color");
-      onEditColor(editColor);
-      setShowEditForm(false);
+    if (color) {
+      const editColor = { ...data, id: color.id };
+
+      if (toEditColorState) {
+        console.log("Editing color");
+        onEditColor(editColor);
+        setShowEditForm(false);
+      }
     } else {
       onAddColor(data);
     }
