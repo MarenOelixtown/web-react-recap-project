@@ -1,17 +1,14 @@
+import ColorInput from "../ColorInput/ColorInput";
 import "./ColorForm.css";
-import { useState } from "react";
-import useLocalStorageState from "use-local-storage-state";
 
-export default function ColorForm({ onAddColor }) {
-  const [colorHex, setColorHex] = useState("#e5430f");
-  const [colorContrastHex, setColorContrastHex] = useState("#FFFFFF");
-
-  const handleColorChangeOne = (event) => {
-    setColorHex(event.target.value);
-  };
-  const handleColorChangeTwo = (event) => {
-    setColorContrastHex(event.target.value);
-  };
+export default function ColorForm({
+  color,
+  onAddColor,
+  onEditColor,
+  toEditColorState,
+  setShowEditForm,
+  initialData = { role: "primary", hex: "#e5430f", contrastText: "#FFFFFF" },
+}) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -21,7 +18,6 @@ export default function ColorForm({ onAddColor }) {
       const editColor = { ...data, id: color.id };
 
       if (toEditColorState) {
-        console.log("Editing color");
         onEditColor(editColor);
         setShowEditForm(false);
       }
@@ -31,44 +27,36 @@ export default function ColorForm({ onAddColor }) {
 
     event.target.reset();
   }
-
+  const currentData = toEditColorState ? color : initialData;
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-      <label htmlFor="role">Role</label>
-      <input type="text" name="role" id="role" placeholder="Color Name" />
-      <label htmlFor="hex-text">Hex</label>
-      <div className="row">
-        <input type="text" name="hex-text" id="hex-text" value={colorHex} />
-        <label htmlFor="hex"></label>
-        <input
-          type="color"
-          name="hex"
-          id="hex"
-          value={colorHex}
-          onChange={handleColorChangeOne}
-        />
-      </div>
-
-      <label htmlFor="contrastText">Contrast Text</label>
-      <div className="row">
+      <label htmlFor="role">
+        Role
+        <br />
         <input
           type="text"
-          name="contrastText"
-          id="contrastText"
-          value={colorContrastHex}
+          id="role"
+          name="role"
+          defaultValue={currentData.role}
         />
+      </label>
+      <br />
+      <label htmlFor="hex">
+        Hex
+        <br />
+        <ColorInput id="hex" defaultValue={currentData.hex} />
+      </label>
+      <br />
+      <label htmlFor="contrastText">
+        Contrast Text
+        <br />
+        <ColorInput id="contrastText" defaultValue={currentData.contrastText} />
+      </label>
+      <br />
 
-        <label htmlFor="hex-contrast"></label>
-        <input
-          type="color"
-          name="hex-contrast"
-          id="hex-contrast"
-          value={colorContrastHex}
-          onChange={handleColorChangeTwo}
-        />
-      </div>
-
-      <button type="submit">Add Color</button>
+      <button type="submit">
+        {toEditColorState ? "UpdateColor" : "Add Color"}
+      </button>
     </form>
   );
 }
