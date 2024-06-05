@@ -7,12 +7,11 @@ import { uid } from "uid";
 
 function App() {
   const [colors, setColors] = useState(initialColors);
-  const deleteAColor = (colorToBeDeleted) => {
-    const updatedColors = colors.filter(
-      (color) => color.id !== colorToBeDeleted.id
-    );
-    setColors(updatedColors);
+
+  const handleDelete = (id) => {
+    setColors(colors.filter((color) => color.id !== id));
   };
+
   function handleAddColor(newColor) {
     setColors([{ id: uid(), ...newColor }, ...colors]);
   }
@@ -26,7 +25,7 @@ function App() {
         <p>No colors ... start by adding one!</p>
       ) : (
         colors.map((color) => (
-          <Color key={color.id} color={color} onDelete={deleteAColor} />
+          <Color key={color.id} color={color} onDelete={handleDelete} />
         ))
       )}
     </>

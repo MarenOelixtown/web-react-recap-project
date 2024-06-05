@@ -3,12 +3,8 @@ import Button from "./Button.jsx";
 import { useState } from "react";
 
 export default function Color({ color, onDelete }) {
-  const [showCancel, setShowCancel] = useState(false);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
-  const handleOnDelete = () => {
-    console.log("tell parent to delete");
-    onDelete(color);
-  };
   return (
     <div
       className="color-card"
@@ -20,16 +16,28 @@ export default function Color({ color, onDelete }) {
       <h3 className="color-card-hightlight">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
-      {!showCancel ? (
-        <Button text="Delete" onClick={() => setShowCancel(true)} />
-      ) : (
+      {showDeleteConfirmation ? (
         <>
           <p className="color-card-hightlight">Really delete??</p>
-          <Button text="Cancel" onClick={() => setShowCancel(false)} />
-          <Button text="Delete" onClick={handleOnDelete} />
+          <Button
+            text="Cancel"
+            onButtonClick={() => setShowDeleteConfirmation(false)}
+          />
+          <Button text="Delete" onButtonClick={() => onDelete(color.id)} />
+        </>
+      ) : (
+        <>
+          <Button
+            text="Delete"
+            onButtonClick={() => setShowDeleteConfirmation(true)}
+          />
+          <Button text="Edit" />
         </>
       )}
-      <Button text="Edit" />
     </div>
   );
 }
+
+/*
+question ? yes : no
+*/
