@@ -1,12 +1,14 @@
 import "./Color.css";
 import Button from "./Button.jsx";
 import { useState } from "react";
-import ColorForm from "../ColorForm/ColorForm.jsx";
 
-export default function Color({ color, onDelete, onEdit }) {
-  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-  const [showEditForm, setShowEditForm] = useState(false);
+export default function Color({ color, onDelete }) {
+  const [showCancel, setShowCancel] = useState(false);
 
+  const handleOnDelete = () => {
+    console.log("tell parent to delete");
+    onDelete(color);
+  };
   return (
     <div
       className="color-card"
@@ -18,43 +20,15 @@ export default function Color({ color, onDelete, onEdit }) {
       <h3 className="color-card-hightlight">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
-      {showDeleteConfirmation ? (
-        <>
-          <p className="color-card-hightlight">Really delete??</p>
-          <Button
-            text="Cancel"
-            onButtonClick={() => setShowDeleteConfirmation(false)}
-          />
-          <Button text="Delete" onButtonClick={() => onDelete(color.id)} />
-        </>
+      {!showCancel ? (
+        <Button text="Delete" onClick={() => setShowCancel(true)} />
       ) : (
         <>
-          <Button
-            text="Delete"
-            onButtonClick={() => setShowDeleteConfirmation(true)}
-          />
-          {showEditForm ? (
-            <>
-              <ColorForm
-                color={color}
-                toEditColorState={showEditForm}
-                onEditColor={onEdit}
-                setShowEditForm={setShowEditForm}
-              />{" "}
-              <Button
-                text="Cancel"
-                onButtonClick={() => setShowEditForm(false)}
-              />
-            </>
-          ) : (
-            <Button text="Edit" onButtonClick={() => setShowEditForm(true)} />
-          )}
+          <p className="color-card-hightlight">Really delete??</p>
+          <Button text="Cancel" onClick={() => setShowCancel(false)} />
+          <Button text="Delete" onClick={handleOnDelete} />
         </>
       )}
     </div>
   );
 }
-
-/*
-question ? yes : no
-*/
