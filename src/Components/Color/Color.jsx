@@ -5,7 +5,7 @@ import ColorForm from "../ColorForm/ColorForm.jsx";
 import CopyToClipboard from "../CopyToClipboard/CopyToClipboard.jsx";
 import ColorCheckContrast from "../ColorCheckContrast/ColorCheckContrast.jsx";
 
-export default function Color({ color, onDelete, onEdit }) {
+export default function Color({ colors, color, onDelete, onEdit }) {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
 
