@@ -2,6 +2,7 @@ import "./Color.css";
 import Button from "./Button.jsx";
 import { useState } from "react";
 import ColorForm from "../ColorForm/ColorForm.jsx";
+import CopyToClipboard from "../CopyToClipboard/CopyToClipboard.jsx";
 
 export default function Color({ color, onDelete, onEdit }) {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
@@ -16,6 +17,7 @@ export default function Color({ color, onDelete, onEdit }) {
       }}
     >
       <h3 className="color-card-hightlight">{color.hex}</h3>
+      <CopyToClipboard color={color} />
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       {showDeleteConfirmation ? (
