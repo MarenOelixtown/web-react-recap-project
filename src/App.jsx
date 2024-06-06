@@ -40,6 +40,7 @@ function App() {
           <Color
             key={color.id}
             color={color}
+            colors={colors}
             onDelete={handleDelete}
             onEdit={handleEditColor}
           />

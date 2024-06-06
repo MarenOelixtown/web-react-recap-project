@@ -1,0 +1,6 @@
+.color-contrast {
+  background-color: rgb(230, 230, 230);
+  padding: 0.5rem;
+  display: inline-block;
+  font-weight: bold;
+}
