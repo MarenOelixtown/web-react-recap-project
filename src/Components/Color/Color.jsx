@@ -22,6 +22,7 @@ export default function Color({ colors, color, onDelete, onEdit }) {
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       <ColorCheckContrast color={color} />
+      <br />
       {showDeleteConfirmation ? (
         <>
           <p className="color-card-hightlight">Really delete??</p>

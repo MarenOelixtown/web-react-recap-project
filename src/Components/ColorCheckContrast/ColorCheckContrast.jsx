@@ -1,3 +1,4 @@
+import "./ColorCheckContrast.css";
 import { useEffect, useState } from "react";
 
 export default function ColorCheckContrast({ color }) {
@@ -26,5 +27,21 @@ export default function ColorCheckContrast({ color }) {
     fetchColorContrastData();
   }, [color.hex, color.contrastText]);
 
-  return <p>Overall contrast score: {resultContrast} </p>;
+  const getStyle = (contrast) => {
+    if (contrast === "Yup") {
+      return { color: "green" };
+    } else if (contrast === "Kinda") {
+      return { color: "orange" };
+    } else if (contrast === "Nope") {
+      return { color: "red" };
+    } else {
+      return {};
+    }
+  };
+
+  return (
+    <p className="color-contrast" style={getStyle(resultContrast)}>
+      Overall contrast score: {resultContrast}{" "}
+    </p>
+  );
 }
