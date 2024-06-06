@@ -3,6 +3,7 @@ import Button from "./Button.jsx";
 import { useState } from "react";
 import ColorForm from "../ColorForm/ColorForm.jsx";
 import CopyToClipboard from "../CopyToClipboard/CopyToClipboard.jsx";
+import ColorCheckContrast from "../ColorCheckContrast/ColorCheckContrast.jsx";
 
 export default function Color({ color, onDelete, onEdit }) {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
@@ -20,6 +21,7 @@ export default function Color({ color, onDelete, onEdit }) {
       <CopyToClipboard color={color} />
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
+      <ColorCheckContrast color={color} />
       {showDeleteConfirmation ? (
         <>
           <p className="color-card-hightlight">Really delete??</p>
