@@ -5,6 +5,7 @@ import ColorForm from "./Components/ColorForm/ColorForm.jsx";
 import { useState } from "react";
 import { uid } from "uid";
 import useLocalStorageState from "use-local-storage-state";
+import MultipleThemesManager from "./Components/MultipleThemesManager/MultipleThemesManager.jsx";
 
 function App() {
   /* const [colors, setColors] = useState(initialColors); */
@@ -31,6 +32,7 @@ function App() {
   return (
     <>
       <h1>Theme Creator</h1>
+      <MultipleThemesManager />
       <ColorForm onAddColor={handleAddColor} />
 
       {colors.length === 0 ? (
