@@ -4,6 +4,7 @@ import "./App.css";
 import ColorForm from "./Components/ColorForm/ColorForm.jsx";
 import { useState } from "react";
 import { uid } from "uid";
+import { LocalStorageState } from "use-local-storage-state";
 
 function App() {
   const [colors, setColors] = useState(initialColors);
